@@ -1,0 +1,19 @@
+{
+  "persons": [
+    {
+      "id": "acee",
+      "name": "Aku Ankka",
+      "number": "050 444"
+    },
+    {
+      "id": "59b1",
+      "name": "Pelle Peloton",
+      "number": "040 555"
+    },
+    {
+      "id": "cb59",
+      "name": "Hannu Hanhi",
+      "number": "040 777"
+    }
+  ]
+}
