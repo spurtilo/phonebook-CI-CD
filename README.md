@@ -1,5 +1,3 @@
-# Phonebook application
+# Full Stack Open: Part 11, CI/CD
 
-The application has been deployed on Render. You can access it using the following link:
-
-[Visit My Application](https://phonebook-7afs.onrender.com)
+The task on this exercise was to set up a CI/CD pipeline for one of my own applications.
