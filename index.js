@@ -1,25 +1,25 @@
-require("dotenv").config();
-const express = require("express");
-const morgan = require("morgan");
-const cors = require("cors");
-const Person = require("./models/person");
+require('dotenv').config();
+const express = require('express');
+const morgan = require('morgan');
+const cors = require('cors');
+const Person = require('./models/person');
 
 const app = express();
 
-app.use(express.static("dist"));
+app.use(express.static('dist'));
 app.use(express.json());
 app.use(cors());
 
-morgan.token("requestData", (req) => {
+morgan.token('requestData', (req) => {
   return JSON.stringify(req.body);
 });
 app.use(
   morgan(
-    ":method :url :status :res[content-length] - :response-time ms :requestData"
+    ':method :url :status :res[content-length] - :response-time ms :requestData'
   )
 );
 
-app.get("/api/persons", (req, res, next) => {
+app.get('/api/persons', (req, res, next) => {
   Person.find({})
     .then((persons) => {
       res.json(persons);
@@ -27,7 +27,7 @@ app.get("/api/persons", (req, res, next) => {
     .catch((error) => next(error));
 });
 
-app.get("/api/persons/:id", (req, res, next) => {
+app.get('/api/persons/:id', (req, res, next) => {
   Person.findById(req.params.id)
     .then((person) => {
       res.json(person);
@@ -35,7 +35,7 @@ app.get("/api/persons/:id", (req, res, next) => {
     .catch((error) => next(error));
 });
 
-app.get("/info", (req, res, next) => {
+app.get('/info', (req, res, next) => {
   Person.countDocuments({})
     .then((count) => {
       res.send(
@@ -45,7 +45,7 @@ app.get("/info", (req, res, next) => {
     .catch((error) => next(error));
 });
 
-app.post("/api/persons/", (req, res, next) => {
+app.post('/api/persons/', (req, res, next) => {
   const { name, number } = req.body;
 
   const person = new Person({
@@ -61,7 +61,7 @@ app.post("/api/persons/", (req, res, next) => {
     .catch((error) => next(error));
 });
 
-app.put("/api/persons/:id", (req, res, next) => {
+app.put('/api/persons/:id', (req, res, next) => {
   const { name, number } = req.body;
 
   Person.findByIdAndUpdate(
@@ -75,7 +75,7 @@ app.put("/api/persons/:id", (req, res, next) => {
     .catch((error) => next(error));
 });
 
-app.delete("/api/persons/:id", (req, res, next) => {
+app.delete('/api/persons/:id', (req, res, next) => {
   Person.findByIdAndDelete(req.params.id)
     .then(() => {
       res.status(204).end();
@@ -86,11 +86,11 @@ app.delete("/api/persons/:id", (req, res, next) => {
 const errorHandler = (error, req, res, next) => {
   console.error(error.message);
 
-  if (error.name === "ValidationError") {
+  if (error.name === 'ValidationError') {
     res.status(400).send({ error: error.message });
   }
 
-  res.status(500).json({ error: "Internal Server Error" });
+  res.status(500).json({ error: 'Internal Server Error' });
 
   next(error);
 };

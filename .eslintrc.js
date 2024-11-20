@@ -5,24 +5,24 @@ module.exports = {
     es2021: true,
     node: true,
   },
-  extends: ["eslint:recommended", "airbnb", "prettier", "prettier/prettier"],
+  extends: ['eslint:recommended', 'airbnb', 'prettier', 'prettier/prettier'],
   overrides: [
     {
       env: {
         node: true,
       },
-      files: [".eslintrc.{js,cjs}"],
+      files: ['.eslintrc.{js,cjs}'],
       parserOptions: {
-        sourceType: "script",
+        sourceType: 'script',
       },
     },
   ],
   parserOptions: {
-    ecmaVersion: "latest",
+    ecmaVersion: 'latest',
   },
   rules: {
-    quotes: ["error", "double"],
-    "no-console": 0,
-    "no-underscore-dangle": 0,
+    quotes: ['error', 'single'],
+    'no-console': 0,
+    'no-underscore-dangle': 0,
   },
 };

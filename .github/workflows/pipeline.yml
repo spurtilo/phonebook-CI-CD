@@ -1,9 +1,16 @@
 name: Deployment pipeline
 
+env:
+  MERGE_OR_PUSH_TO_MAIN: ${{ github.event_name == 'push' }}
+  SKIP_DEPLOYMENT: ${{ contains(join(github.event.commits.*.message, ', '), '#skip') }}
+
 on:
   push:
     branches:
       - main
+  pull_request:
+    branches: [main]
+    types: [opened, synchronize]
 
 jobs:
   deployment:
