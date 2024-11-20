@@ -1,4 +1,4 @@
-import React from "react";
+import PropTypes from 'prop-types';
 
 const Filter = ({ id, value, eventHandler }) => {
   return (
@@ -7,6 +7,12 @@ const Filter = ({ id, value, eventHandler }) => {
       <input id={id} value={value} onChange={eventHandler} />
     </>
   );
+};
+
+Filter.propTypes = {
+  id: PropTypes.string.isRequired,
+  value: PropTypes.string.isRequired,
+  eventHandler: PropTypes.func.isRequired,
 };
 
 export default Filter;

@@ -1,10 +1,10 @@
-import { useState, useEffect } from "react";
-import personService from "./services/persons";
-import Header from "./components/Header";
-import Filter from "./components/Filter";
-import PersonForm from "./components/PersonForm";
-import Persons from "./components/Persons";
-import Notification from "./components/Notification";
+import { useState, useEffect } from 'react';
+import personService from './services/persons';
+import Header from './components/Header';
+import Filter from './components/Filter';
+import PersonForm from './components/PersonForm';
+import Persons from './components/Persons';
+import Notification from './components/Notification';
 
 function filterNames(personsArray, searchTerm) {
   const searchResult = personsArray.filter((person) =>
@@ -15,13 +15,13 @@ function filterNames(personsArray, searchTerm) {
 
 const App = () => {
   const [persons, setPersons] = useState([]);
-  const [newName, setNewName] = useState("");
-  const [newNumber, setNewNumber] = useState("");
-  const [newFilter, setNewFilter] = useState("");
+  const [newName, setNewName] = useState('');
+  const [newNumber, setNewNumber] = useState('');
+  const [newFilter, setNewFilter] = useState('');
   const [showAll, setShowAll] = useState(true);
   const [notification, setNotification] = useState({
-    message: null,
-    type: "success",
+    message: '',
+    type: '',
   });
 
   useEffect(() => {
@@ -31,10 +31,10 @@ const App = () => {
         setPersons(initialPersons);
       })
       .catch((error) => {
-        console.error("Error fetching data:", error);
+        console.error('Error fetching data:', error);
         handleNotification(
-          "Failed to fetch data. Please try again later.",
-          "error"
+          'Failed to fetch data. Please try again later.',
+          'error'
         );
       });
   }, []);
@@ -42,7 +42,7 @@ const App = () => {
   const handleNotification = (message, type) => {
     setNotification({ message, type });
     setTimeout(() => {
-      setNotification({ message: null, type: null });
+      setNotification({ message: '', type: '' });
     }, 5000);
   };
 
@@ -57,7 +57,7 @@ const App = () => {
       if (updateConfirmation) {
         handleUpdate(existingPerson);
       } else {
-        console.log("Update cancelled.");
+        console.log('Update cancelled.');
       }
     } else {
       const personObject = {
@@ -69,14 +69,14 @@ const App = () => {
         .create(personObject)
         .then((returnedPerson) => {
           setPersons(persons.concat(returnedPerson));
-          handleNotification(`Added ${newName}`, "success");
+          handleNotification(`Added ${newName}`, 'success');
         })
         .catch((error) => {
-          console.error("Error creating a person:", error);
-          handleNotification(error.response.data.error, "error");
+          console.error('Error creating a person:', error);
+          handleNotification(error.response.data.error, 'error');
         });
-      setNewName("");
-      setNewNumber("");
+      setNewName('');
+      setNewNumber('');
     }
   };
 
@@ -91,21 +91,21 @@ const App = () => {
             person.id !== existingPerson.id ? person : returnedPerson
           )
         );
-        handleNotification(`Updated ${returnedPerson.name}`, "success");
+        handleNotification(`Updated ${returnedPerson.name}`, 'success');
       })
       .catch((error) => {
-        console.error("Error updating a person:", error);
+        console.error('Error updating a person:', error);
         if (error.response.data.error) {
-          handleNotification(error.response.data.error, "error");
+          handleNotification(error.response.data.error, 'error');
         } else {
           handleNotification(
             `Information of ${updatedPerson.name} has already been removed from server`,
-            "error"
+            'error'
           );
         }
       });
-    setNewName("");
-    setNewNumber("");
+    setNewName('');
+    setNewNumber('');
   };
 
   const handleDelete = (id, name) => {
@@ -114,13 +114,13 @@ const App = () => {
         .remove(id)
         .then(() => {
           setPersons(persons.filter((person) => person.id !== id));
-          handleNotification(`Deleted ${name}`, "success");
+          handleNotification(`Deleted ${name}`, 'success');
         })
         .catch((error) => {
-          console.error("Error deleting a person:", error);
+          console.error('Error deleting a person:', error);
           handleNotification(
             `Failed to delete ${name}. Please try again.`,
-            "error"
+            'error'
           );
         });
     }

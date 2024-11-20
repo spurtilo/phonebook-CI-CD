@@ -1,4 +1,4 @@
-import React from "react";
+import PropTypes from 'prop-types';
 
 const PersonForm = ({
   id,
@@ -23,6 +23,15 @@ const PersonForm = ({
       </div>
     </form>
   );
+};
+
+PersonForm.propTypes = {
+  id: PropTypes.string.isRequired,
+  nameValue: PropTypes.string.isRequired,
+  numberValue: PropTypes.string.isRequired,
+  nameHandler: PropTypes.func.isRequired,
+  numberHandler: PropTypes.func.isRequired,
+  submitHandler: PropTypes.func.isRequired,
 };
 
 export default PersonForm;

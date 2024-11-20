@@ -1,5 +1,5 @@
-require("dotenv").config();
-const mongoose = require("mongoose");
+require('dotenv').config();
+const mongoose = require('mongoose');
 
 const { Schema } = mongoose;
 
@@ -8,7 +8,7 @@ const number = process.argv[3];
 
 const url = process.env.MONGODB_URI;
 
-mongoose.set("strictQuery", false);
+mongoose.set('strictQuery', false);
 mongoose.connect(url);
 
 const personSchema = new Schema({
@@ -16,7 +16,7 @@ const personSchema = new Schema({
   number: String,
 });
 
-const Person = mongoose.model("Person", personSchema);
+const Person = mongoose.model('Person', personSchema);
 
 if (name && number) {
   const person = new Person({
@@ -31,7 +31,7 @@ if (name && number) {
   });
 } else {
   Person.find({}).then((result) => {
-    console.log("Phonebook:");
+    console.log('Phonebook:');
     result.forEach((person) => {
       console.log(`${person.name} ${person.number}`);
     });
