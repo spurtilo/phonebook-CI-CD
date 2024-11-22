@@ -5,7 +5,7 @@ const { Schema } = mongoose;
 
 mongoose.set('strictQuery', false);
 
-const url = config.MONGODB_URI;
+const url = config.MONGODB_URI || process.env.CI_MONGODB_URI;
 
 console.log('Connecting to', url);
 mongoose
