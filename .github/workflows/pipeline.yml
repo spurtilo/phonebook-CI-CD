@@ -35,6 +35,8 @@ jobs:
         run: npm run build:ui
 
       - name: Start app for tests
+        env:
+          CI_MONGODB_URI: ${{ secrets.CI_MONGODB_URI }}
         run: npm run start:test
 
       - name: Install Playwright Browsers
