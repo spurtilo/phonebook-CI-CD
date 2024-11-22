@@ -18,12 +18,18 @@ const Person = ({ person, deleteHandler }) => {
 };
 
 const Persons = ({ persons, deleteHandler }) => {
-  return persons.map((person) => (
+  return (
     <>
       <Header text="Numbers" />
-      <Person key={person.name} person={person} deleteHandler={deleteHandler} />
+      {persons.map((person) => (
+        <Person
+          key={person.name}
+          person={person}
+          deleteHandler={deleteHandler}
+        />
+      ))}
     </>
-  ));
+  );
 };
 
 Person.propTypes = {
@@ -35,11 +41,13 @@ Person.propTypes = {
   deleteHandler: PropTypes.func.isRequired,
 };
 Persons.propTypes = {
-  person: PropTypes.shape({
-    name: PropTypes.string.isRequired,
-    number: PropTypes.string.isRequired,
-    id: PropTypes.string.isRequired,
-  }).isRequired,
+  persons: PropTypes.arrayOf(
+    PropTypes.shape({
+      name: PropTypes.string.isRequired,
+      number: PropTypes.string.isRequired,
+      id: PropTypes.string.isRequired,
+    })
+  ).isRequired,
   deleteHandler: PropTypes.func.isRequired,
 };
 

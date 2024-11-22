@@ -34,11 +34,6 @@ jobs:
       - name: Build
         run: npm run build:ui
 
-      # - name: Start app for tests
-      #   env:
-      #     CI_MONGODB_URI: ${{ secrets.CI_MONGODB_URI }}
-      #   run: npm run start:test
-
       - name: Install Playwright Browsers
         run: npx playwright install --with-deps
       - name: E2E tests
@@ -51,3 +46,6 @@ jobs:
           name: playwright-report
           path: playwright-report/
           retention-days: 30
+
+      - name: Trigger deployment
+        run: curl https://api.render.com/deploy/srv-${{ secrets.RENDER_SERVICE_ID }}?key=${{ secrets.RENDER_API_KEY }}
