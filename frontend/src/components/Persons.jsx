@@ -1,12 +1,11 @@
 import PropTypes from 'prop-types';
 import DeleteButton from './DeleteButton';
+import Header from './Header';
 
 const Person = ({ person, deleteHandler }) => {
   return (
     <div className="personListItem">
-      <div>
-        {person.name} {person.number}{' '}
-      </div>
+      <div>{`${person.name} ${person.number}`}</div>
       <div>
         <DeleteButton
           personId={person.id}
@@ -20,7 +19,10 @@ const Person = ({ person, deleteHandler }) => {
 
 const Persons = ({ persons, deleteHandler }) => {
   return persons.map((person) => (
-    <Person key={person.name} person={person} deleteHandler={deleteHandler} />
+    <>
+      <Header text="Numbers" />
+      <Person key={person.name} person={person} deleteHandler={deleteHandler} />
+    </>
   ));
 };
 

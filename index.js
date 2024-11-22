@@ -83,6 +83,11 @@ app.delete('/api/persons/:id', (req, res, next) => {
     .catch((error) => next(error));
 });
 
+if (process.env.NODE_ENV === 'test') {
+  const testingRouter = require('./controllers/testing'); // eslint-disable-line
+  app.use('/api/testing', testingRouter);
+}
+
 const errorHandler = (error, req, res, next) => {
   console.error(error.message);
 

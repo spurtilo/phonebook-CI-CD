@@ -18,7 +18,6 @@ const App = () => {
   const [newName, setNewName] = useState('');
   const [newNumber, setNewNumber] = useState('');
   const [newFilter, setNewFilter] = useState('');
-  const [showAll, setShowAll] = useState(true);
   const [notification, setNotification] = useState({
     message: '',
     type: '',
@@ -135,16 +134,13 @@ const App = () => {
   };
 
   const handleFilterChange = (event) => {
-    setNewFilter(event.target.value);
-
-    if (newFilter.length > 0) {
-      setShowAll(false);
-    } else {
-      setShowAll(true);
-    }
+    const value = event.target.value;
+    setNewFilter(value);
   };
 
-  const personsToShow = showAll ? persons : filterNames(persons, newFilter);
+  const personsToShow = newFilter.trim()
+    ? filterNames(persons, newFilter)
+    : persons;
 
   return (
     <div>
@@ -166,7 +162,6 @@ const App = () => {
         submitHandler={handleAdding}
       />
 
-      <Header text="Numbers" />
       <Persons persons={personsToShow} deleteHandler={handleDelete} />
     </div>
   );

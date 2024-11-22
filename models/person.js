@@ -1,10 +1,11 @@
 const mongoose = require('mongoose');
+const config = require('../utils/config');
 
 const { Schema } = mongoose;
 
 mongoose.set('strictQuery', false);
 
-const url = process.env.MONGODB_URI;
+const url = config.MONGODB_URI;
 
 console.log('Connecting to', url);
 mongoose
