@@ -34,14 +34,16 @@ jobs:
       - name: Build
         run: npm run build:ui
 
-      - name: Start app for tests
-        env:
-          CI_MONGODB_URI: ${{ secrets.CI_MONGODB_URI }}
-        run: npm run start:test
+      # - name: Start app for tests
+      #   env:
+      #     CI_MONGODB_URI: ${{ secrets.CI_MONGODB_URI }}
+      #   run: npm run start:test
 
       - name: Install Playwright Browsers
         run: npx playwright install --with-deps
       - name: E2E tests
+        env:
+          CI_MONGODB_URI: ${{ secrets.CI_MONGODB_URI }}
         run: npx playwright test
       - uses: actions/upload-artifact@v4
         if: ${{ !cancelled() }}
