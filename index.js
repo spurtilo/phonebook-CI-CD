@@ -20,7 +20,7 @@ app.use(
 );
 
 app.get('/version', (req, res) => {
-  res.send('1');
+  res.send('v0.0.4');
 });
 
 app.get('/health', (req, res) => {
